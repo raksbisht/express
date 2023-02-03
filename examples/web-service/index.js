@@ -72,12 +72,12 @@ var userRepos = {
 // and simply expose the data
 
 // example: http://localhost:3000/api/users/?api-key=foo
-app.get('/api/users', function(req, res, next){
+app.get('/api/users', function(req, res){
   res.send(users);
 });
 
 // example: http://localhost:3000/api/repos/?api-key=foo
-app.get('/api/repos', function(req, res, next){
+app.get('/api/repos', function(req, res){
   res.send(repos);
 });
 
@@ -95,7 +95,7 @@ app.get('/api/user/:name/repos', function(req, res, next){
 // it will be passed through the defined middleware
 // in order, but ONLY those with an arity of 4, ignoring
 // regular middleware.
-app.use(function(err, req, res, next){
+app.use(function(err, req, res){
   // whatever you want here, feel free to populate
   // properties on `err` to treat it differently in here.
   res.status(err.status || 500);

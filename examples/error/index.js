@@ -17,7 +17,7 @@ if (!test) app.use(logger('dev'));
 // middleware, you may have several of them,
 // in different orders etc.
 
-function error(err, req, res, next) {
+function error(err, req, res) {
   // log it
   if (!test) console.error(err.stack);
 
@@ -26,7 +26,7 @@ function error(err, req, res, next) {
   res.send('Internal Server Error');
 }
 
-app.get('/', function(req, res){
+app.get('/', function(){
   // Caught and passed down to the errorHandler middleware
   throw new Error('something broke!');
 });

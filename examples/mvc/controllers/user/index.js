@@ -21,19 +21,19 @@ exports.before = function(req, res, next){
   });
 };
 
-exports.list = function(req, res, next){
+exports.list = function(req, res){
   res.render('list', { users: db.users });
 };
 
-exports.edit = function(req, res, next){
+exports.edit = function(req, res){
   res.render('edit', { user: req.user });
 };
 
-exports.show = function(req, res, next){
+exports.show = function(req, res){
   res.render('show', { user: req.user });
 };
 
-exports.update = function(req, res, next){
+exports.update = function(req, res){
   var body = req.body;
   req.user.name = body.user.name;
   res.message('Information updated!');

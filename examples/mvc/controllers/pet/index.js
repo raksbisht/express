@@ -15,15 +15,15 @@ exports.before = function(req, res, next){
   next();
 };
 
-exports.show = function(req, res, next){
+exports.show = function(req, res){
   res.render('show', { pet: req.pet });
 };
 
-exports.edit = function(req, res, next){
+exports.edit = function(req, res){
   res.render('edit', { pet: req.pet });
 };
 
-exports.update = function(req, res, next){
+exports.update = function(req, res){
   var body = req.body;
   req.pet.name = body.pet.name;
   res.message('Information updated!');

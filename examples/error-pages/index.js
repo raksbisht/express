@@ -60,7 +60,7 @@ app.get('/500', function(req, res, next){
 // $ curl http://localhost:3000/notfound -H "Accept: application/json"
 // $ curl http://localhost:3000/notfound -H "Accept: text/plain"
 
-app.use(function(req, res, next){
+app.use(function(req, res){
   res.status(404);
 
   res.format({
@@ -88,7 +88,7 @@ app.use(function(req, res, next){
 // would remain being executed, however here
 // we simply respond with an error page.
 
-app.use(function(err, req, res, next){
+app.use(function(err, req, res){
   // we may use properties of the error object
   // here and next(err) appropriately, or if
   // we possibly recovered from the error, simply next().

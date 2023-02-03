@@ -75,7 +75,7 @@ app.use(function(req, res, next){
 // load controllers
 require('./lib/boot')(app, { verbose: !module.parent });
 
-app.use(function(err, req, res, next){
+app.use(function(err, req, res){
   // log it
   if (!module.parent) console.error(err.stack);
 
@@ -84,7 +84,7 @@ app.use(function(err, req, res, next){
 });
 
 // assume 404 since no middleware responded
-app.use(function(req, res, next){
+app.use(function(req, res){
   res.status(404).render('404', { url: req.originalUrl });
 });
 
