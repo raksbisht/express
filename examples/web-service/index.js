@@ -95,7 +95,7 @@ app.get('/api/user/:name/repos', function(req, res, next){
 // it will be passed through the defined middleware
 // in order, but ONLY those with an arity of 4, ignoring
 // regular middleware.
-app.use(function(err, req, res){
+app.use(function(err, req, res,next){
   // whatever you want here, feel free to populate
   // properties on `err` to treat it differently in here.
   res.status(err.status || 500);

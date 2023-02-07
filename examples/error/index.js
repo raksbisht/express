@@ -17,7 +17,7 @@ if (!test) app.use(logger('dev'));
 // middleware, you may have several of them,
 // in different orders etc.
 
-function error(err, req, res) {
+function error(err, req, res,next) {
   // log it
   if (!test) console.error(err.stack);
 
