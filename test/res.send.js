@@ -217,6 +217,46 @@ describe('res', function(){
         .expect(200, "hey", done);
     })
 
+    it('should send the bytes of a multi-byte TypedArray', function (done) {
+      var app = express();
+      var bytes = Buffer.from('heya');
+      app.use(function (req, res) {
+        res.type('text/plain').send(new Uint16Array(bytes.buffer, bytes.byteOffset, 2));
+      })
+
+      request(app)
+        .get('/')
+        .expect('Content-Length', '4')
+        .expect(200, 'heya', done);
+    })
+
+    it('should send the bytes of a DataView', function (done) {
+      var app = express();
+      var bytes = Buffer.from('hey');
+      app.use(function (req, res) {
+        res.type('text/plain').send(new DataView(bytes.buffer, bytes.byteOffset, bytes.length));
+      })
+
+      request(app)
+        .get('/')
+        .expect('Content-Length', '3')
+        .expect(200, 'hey', done);
+    })
+
+    it('should send the bytes of a TypedArray without ETag', function (done) {
+      var app = express();
+      var bytes = Buffer.from('heya');
+      app.set('etag', false);
+      app.use(function (req, res) {
+        res.type('text/plain').send(new Uint16Array(bytes.buffer, bytes.byteOffset, 2));
+      })
+
+      request(app)
+        .get('/')
+        .expect('Content-Length', '4')
+        .expect(200, 'heya', done);
+    })
+
     it('should not override ETag', function (done) {
       var app = express()
 
